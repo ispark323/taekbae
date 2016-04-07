@@ -4,7 +4,7 @@
   "description": "Korean parcel service tracking service for Node.js",
   "main": "index.js",
   "scripts": {
-    "test": "jshint --reporter=node_modules/jshint-stylish . && node_modules/.bin/mocha --reporter spec --require test/bootstrap/node test/*.spec.js"
+    "test": "jshint --reporter=node_modules/jshint-stylish . && node_modules/.bin/mocha --reporter spec --require test/bootstrap/node test/**/*.spec.js"
   },
   "repository": {
     "type": "git",
