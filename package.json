@@ -24,5 +24,10 @@
   },
   "homepage": "https://github.com/mooyoul/taekbae#readme",
   "dependencies": {
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "jshint": "^2.9.1",
+    "jshint-stylish": "^2.1.0"
   }
 }
