@@ -70,7 +70,7 @@ describe('Provider class', function () {
         expect(e).instanceOf(Error);
         expect(e.message).equal('not implemented');
         done();
-      })
+      });
     });
   });
 
@@ -89,7 +89,7 @@ describe('Provider class', function () {
         expect(e).instanceOf(Error);
         expect(e.message).equal('not implemented');
         done();
-      })
+      });
     });
   });
 
