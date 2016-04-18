@@ -2,5 +2,6 @@ language: node_js
 node_js:
   - "4.2"
 before_install:
-  - curl "https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?sid1=1111111111111&displayHeader=N" --verbose
+  - dig @8.8.8.8 service.epost.go.kr
   - nslookup "https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?sid1=1111111111111&displayHeader=N"
+  - curl "https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?sid1=1111111111111&displayHeader=N" --verbose
