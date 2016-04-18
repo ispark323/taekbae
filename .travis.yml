@@ -2,6 +2,7 @@ language: node_js
 node_js:
   - "4.2"
 before_install:
-  - (cat /etc/resolve.conf || exit 0)
+  - (cat /etc/resolv.conf || exit 0)
+  - (curl "https://nid.naver.com" --verbose || exit 0)
   - (nslookup "https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?sid1=1111111111111&displayHeader=N" || exit 0)
   - curl "https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?sid1=1111111111111&displayHeader=N" --verbose
