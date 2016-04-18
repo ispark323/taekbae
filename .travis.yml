@@ -3,7 +3,6 @@ language: node_js
 node_js:
   - "4.2"
 before_script:
-  - sudo echo "nameserver 168.126.63.1" > /etc/resolv.conf
-  - sudo echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+  - echo "nameserver 168.126.63.1" | sudo tee /etc/resolv.conf
   - (nslookup "https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?sid1=1111111111111&displayHeader=N" || exit 0)
   - (curl "https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?sid1=1111111111111&displayHeader=N" --verbose || exit 0)
