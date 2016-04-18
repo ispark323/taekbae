@@ -1,8 +1,8 @@
+sudo: true
 language: node_js
 node_js:
   - "4.2"
-before_install:
-  - (cat /etc/resolv.conf || exit 0)
-  - (curl "https://nid.naver.com" --verbose || exit 0)
+before_script:
+  - sudo echo "168.126.63.1" > /etc/resolv.conf
   - (nslookup "https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?sid1=1111111111111&displayHeader=N" || exit 0)
-  - curl "https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?sid1=1111111111111&displayHeader=N" --verbose
+  - (curl "https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm?sid1=1111111111111&displayHeader=N" --verbose || exit 0)
