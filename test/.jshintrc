@@ -1,7 +1,9 @@
 {
   "extends": "../.jshintrc",
   "mocha": true,
+  "maxlen": 120,
   "globals": {
-    "expect": false
+    "expect": false,
+    "nock": false
   }
 }
