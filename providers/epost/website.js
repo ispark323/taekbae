@@ -7,7 +7,7 @@ var
   util      = require('util'),
   cheerio   = require('cheerio'),
   request   = require('request'),
-  Provider  = require('../lib/provider');
+  Provider  = require('../../lib/provider');
 
 
 var noop    = function () {};

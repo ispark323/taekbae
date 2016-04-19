@@ -5,8 +5,8 @@
 var
   path          = require('path'),
   fs            = require('fs'),
-  Provider      = require('../../lib/provider'),
-  EPost         = require('../../providers/epost');
+  Provider      = require('../../../lib/provider'),
+  EPost         = require('../../../providers/epost/website');
 
 describe('epost module', function () {
 
@@ -158,7 +158,7 @@ describe('epost class', function () {
     });
 
     it('should parse html using test fixture', function (done) {
-      fs.readFile(path.join(__dirname, '../fixtures/epost.fixture.html'), function (e, data) {
+      fs.readFile(path.join(__dirname, '../../fixtures/epost/website/epost.fixture.html'), function (e, data) {
         if (e) { return done(e); }
 
         epost.parse(data, function (e) {
