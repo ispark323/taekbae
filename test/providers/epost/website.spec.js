@@ -158,12 +158,25 @@ describe('epost class', function () {
     });
 
     it('should parse html using test fixture', function (done) {
-      fs.readFile(path.join(__dirname, '../../fixtures/epost/website/epost.fixture.html'), function (e, data) {
+      fs.readFile(path.join(__dirname, '../../fixtures/epost/website/empty.fixture.html'), function (e, data) {
         if (e) { return done(e); }
 
-        epost.parse(data, function (e) {
+        epost.parse(data, function (e, data) {
           expect(e).to.be.a('null');
-          done();
+          expect(data).to.be.a('null');
+
+          fs.readFile(path.join(__dirname, '../../fixtures/epost/website/epost.fixture.html'), function (e, data) {
+            if (e) { return done(e); }
+
+            epost.parse(data, function (e, data) {
+              expect(e).to.be.a('null');
+              expect(data).to.be.a('object');
+              expect(data.provider.id).equal('epost');
+              expect(data.provider.name).equal('우체국');
+              expect(data.status).equal('배달완료');
+              done();
+            });
+          });
         });
       });
     });
