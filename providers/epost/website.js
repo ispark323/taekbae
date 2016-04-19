@@ -93,7 +93,7 @@ EPost.prototype.parse = function (body, done) {
     payload.receivedAt = receivedChunks[1].trim().replace(/[\/\.]/g, '-');
 
 
-    var histories = $tables.filter(function (index, el) {
+    payload.histories = $tables.filter(function (index, el) {
       return ~$(el).children('caption').text().indexOf('배송진행현황');
     }).find('tr').map(function (index, el) {
       var $columns = $(el).children('td');
@@ -105,8 +105,6 @@ EPost.prototype.parse = function (body, done) {
         status: $columns.eq(3).text().replace(/\s+/g, ' ').trim()
       };
     }).get();
-
-    payload.histories = histories;
 
     done(null, payload);
   });
