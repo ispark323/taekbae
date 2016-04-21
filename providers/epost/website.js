@@ -55,7 +55,6 @@ EPost.prototype.parse = function (body, done) {
       return done(e);
     }
 
-    /* istanbul ignore next: There are no interfaces to test */
     var
       $tables = $('table'),
       $overall = $tables.filter(function (index, el) {
