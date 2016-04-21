@@ -46,6 +46,8 @@ EPost.prototype.fetch = function (tracking, done) {
 };
 
 EPost.prototype.parse = function (body, done) {
+  done = done || noop;
+
   process.nextTick(function () {
     var $;
 
