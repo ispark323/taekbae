@@ -14,7 +14,9 @@ var noop    = function () {};
 
 var EPost = function () {
   Provider.call(this);
-  this.name = 'epost';
+  this.id = 'epost';
+  this.name = '우체국';
+  this.source = 'website';
   this.TRACKING_REGEXP = /^[0-9]{13}$/;
 };
 
@@ -70,8 +72,9 @@ EPost.prototype.parse = function (body, done) {
 
     var payload = {
       provider: {
-        id: 'epost',
-        name: '우체국'
+        id: this.id,
+        name: this.name,
+        source: this.source
       },
       name: $overall.eq(0).text().trim(),
       remarks: $overall.eq(3).text().trim(),
