@@ -13,12 +13,30 @@ describe('Provider module', function () {
 describe('Provider class', function () {
   var provider = new Provider();
 
+  describe('#id', function () {
+    it('should set `id` property as type String', function () {
+      expect(provider.id).to.be.a('string');
+    });
+    it('should set `id` property as `unknown`', function () {
+      expect(provider.id).equal('unknown');
+    });
+  });
+
   describe('#name', function () {
     it('should set `name` property as type String', function () {
       expect(provider.name).to.be.a('string');
     });
-    it('should set `name` property as `unknown`', function () {
-      expect(provider.name).equal('unknown');
+    it('should set `name` property as `알수없음`', function () {
+      expect(provider.name).equal('알수없음');
+    });
+  });
+
+  describe('#source', function () {
+    it('should set `source` property as type String', function () {
+      expect(provider.source).to.be.a('string');
+    });
+    it('should set `source` property as `unknown`', function () {
+      expect(provider.source).equal('unknown');
     });
   });
 
