@@ -6,6 +6,7 @@
 var
   util      = require('util'),
   cheerio   = require('cheerio'),
+  moment    = require('moment'),
   request   = require('request'),
   Provider  = require('../../lib/provider');
 
@@ -101,10 +102,12 @@ EPost.prototype.parse = function (body, done) {
       return ~$(el).children('caption').text().indexOf('배송진행현황');
     }).find('tr').map(function (index, el) {
       var $columns = $(el).children('td');
+      var $columns = $(el).children('td'),
+          _date = $columns.eq(0).text().trim().replace(/[\/\.]/g, '-') +
+              ' ' + $columns.eq(1).text().trim();
 
       return {
-        date: $columns.eq(0).text().trim().replace(/[\/\.]/g, '-') +
-            ' ' + $columns.eq(1).text().trim(),
+        date: moment(_date, 'YYYY-MM-DD HH:mm').toDate(),
         location: $columns.eq(2).text().trim(),
         status: $columns.eq(3).text().replace(/\s+/g, ' ').trim()
       };
