@@ -111,7 +111,16 @@ EPost.prototype.parse = function (body, done) {
         location: $columns.eq(2).text().trim(),
         status: $columns.eq(3).text().replace(/\s+/g, ' ').trim()
       };
-    }).get();
+    }).get().sort(function (a, b) {
+      if (a.date.getTime() > b.date.getTime()) {
+        return 1;
+      }
+      if (a.date.getTime()< b.date.getTime()) {
+        return -1;
+      }
+
+      return 0;
+    });
 
     done(null, payload);
   }.bind(this));
