@@ -1,0 +1,11 @@
+engines:
+  engines:
+    nodesecurity:
+      enabled: true
+  fixme:
+    enabled: true
+ratings:
+  paths:
+  - "**.js"
+exclude_paths:
+- test/
