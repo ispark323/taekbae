@@ -8,7 +8,7 @@ var
   Provider      = require('../../../lib/provider'),
   EPost         = require('../../../providers/epost/website');
 
-describe('epost module', function () {
+describe('providers/epost/website module', function () {
 
   it('should export constructor', function () {
     expect(EPost).to.be.a('function');
@@ -20,17 +20,36 @@ describe('epost module', function () {
 
 });
 
-describe('epost class', function () {
+describe('providers/epost/website class', function () {
   var epost = new EPost();
+
+  describe('#id', function () {
+    it('should set `id` property as type String', function () {
+      expect(epost.id).to.be.a('string');
+    });
+    it('should set `id` property as `epost`', function () {
+      expect(epost.id).equal('epost');
+    });
+  });
 
   describe('#name', function () {
     it('should set `name` property as type String', function () {
       expect(epost.name).to.be.a('string');
     });
-    it('should set `name` property as `epost`', function () {
-      expect(epost.name).equal('epost');
+    it('should set `name` property as `우체국`', function () {
+      expect(epost.name).equal('우체국');
     });
   });
+
+  describe('#source', function () {
+    it('should set `source` property as type String', function () {
+      expect(epost.source).to.be.a('string');
+    });
+    it('should set `source` property as `website`', function () {
+      expect(epost.source).equal('website');
+    });
+  });
+
 
   describe('#validate', function () {
     it('should have `validate` method', function () {
@@ -165,7 +184,7 @@ describe('epost class', function () {
           expect(e).to.be.a('null');
           expect(data).to.be.a('null');
 
-          fs.readFile(path.join(__dirname, '../../fixtures/epost/website/epost.fixture.html'), function (e, data) {
+          fs.readFile(path.join(__dirname, '../../fixtures/epost/website/results.fixture.html'), function (e, data) {
             if (e) { return done(e); }
 
             epost.parse(data, function (e, data) {
@@ -174,6 +193,11 @@ describe('epost class', function () {
               expect(data.provider.id).equal('epost');
               expect(data.provider.name).equal('우체국');
               expect(data.status).equal('배달완료');
+              expect(data.sender).equal('명*물류(인바운드)');
+              expect(data.recipient).equal('이*열');
+              expect(data.sentAt).instanceOf(Date);
+              expect(data.receivedAt).instanceOf(Date);
+              expect(data.histories).instanceOf(Array);
               done();
             });
           });
