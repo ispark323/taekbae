@@ -99,8 +99,9 @@ EPost.prototype.parse = function (body, done) {
 
     payload.histories = $tables.filter(function (index, el) {
       return ~$(el).children('caption').text().indexOf('배송진행현황');
-    }).find('tr').map(function (index, el) {
-      var $columns = $(el).children('td');
+    }).last().find('tr').filter(function (index, el) {
+      return $(el).children('td').length;
+    }).map(function (index, el) {
       var $columns = $(el).children('td'),
           _date = $columns.eq(0).text().trim().replace(/[\/\.]/g, '-') +
               ' ' + $columns.eq(1).text().trim();
