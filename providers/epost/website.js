@@ -76,7 +76,7 @@ EPost.prototype.parse = function (body, done) {
         name: this.name,
         source: this.source
       },
-      name: $overall.eq(0).text().trim(),
+      tracking: $overall.eq(0).text().trim(),
       remarks: $overall.eq(3).text().trim(),
       status: $overall.eq(4).text().trim()
     };
