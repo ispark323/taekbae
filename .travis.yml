@@ -4,6 +4,9 @@ node_js:
   - "4.2"
 before_script:
   - echo "nameserver 168.126.63.1" | sudo tee /etc/resolv.conf
+after_script:
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - cat ./coverage/lcov.info | ./node_modules/.bin/codeclimate-test-reporter
 addons:
     code_climate:
         repo_token:
