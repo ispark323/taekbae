@@ -93,9 +93,8 @@ EPost.prototype.parse = function (body, done) {
       receivedChunks = $overall.eq(2).text().split('\n');
 
     payload.sender = sentChunks[0].trim();
-    payload.sentAt = sentChunks[1].trim().replace(/[\/\.]/g, '-');
     payload.recipient = receivedChunks[0].trim();
-    payload.receivedAt = receivedChunks[1].trim().replace(/[\/\.]/g, '-');
+
 
 
     payload.histories = $tables.filter(function (index, el) {
@@ -121,6 +120,9 @@ EPost.prototype.parse = function (body, done) {
 
       return 0;
     });
+
+    payload.sentAt = payload.histories[0].date;
+    payload.receivedAt = payload.histories[payload.histories.length - 1].date;
 
     done(null, payload);
   }.bind(this));
