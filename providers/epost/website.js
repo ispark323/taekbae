@@ -109,7 +109,7 @@ EPost.prototype.parse = function (body, done) {
     }).get();
 
     done(null, payload);
-  });
+  }.bind(this));
 };
 
 
