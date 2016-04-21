@@ -4,3 +4,7 @@ node_js:
   - "4.2"
 before_script:
   - echo "nameserver 168.126.63.1" | sudo tee /etc/resolv.conf
+addons:
+    code_climate:
+        repo_token:
+          secure: "LG/PgyVe51Ame/AKuqRGy2mw/QhbCXYs+rj0BqAKA1pxNFUhR9JAPFRw0Md9ItynrOXyqmUxLBUHzSl0gF/M5n5m9QGwfuZ1NAnLbfhz98EKaY0kdyNO0zTOmqJRmvdlSdX44oIiZLGAKr02Cgt1M+mCXdWAFROzU0rUJrgruEP6dCfpmx3uWhHAqAvsiRpbbNX3a61eHRqaa/2thmJ6yqQfZxX6Rv7bvXLIBSYkiwn46UKRIOVjEPecCfYL/BtMefM+3k7mrgAILkBn2w3R8MSrBB3biXekeEeVtBvB7zq0YUzTKFe8E93xVfhy5grrUNL6PzZmbkfYk1j9OmOowoUVBIBOlgdSoU1vjjmDipzpsmzyEczmxVtw5yhpF0jtcDVaC5T0YhSp9F84HP+q1AyrmgaiJmpQhZvZxDot0j4enUcM6X2rZjSX0g9FJ55eMXF13LFh0rmlMFcs0qwYj6Ta3qZS+mitxIIjLpsn1bfWLEEhxhB4oLUtYCtseeFTJW1IMO58Bu/34cZ/PldbZpMvxM/vDu/ARmPBI30wMF6yp+NILW2IHccgyH+DUg+j3ZF5gfn7ql4zWi0WqWsLl6i1rMwzhalKMxh/VmBTFQogau7HccRoHi+yu6btmmMt0BUBA6q+b2LNwGi2Sn9djb3C9kV5+4202AemYOJSTx8="
