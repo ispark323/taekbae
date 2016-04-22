@@ -7,6 +7,7 @@ before_script:
 after_script:
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
   - cat ./coverage/lcov.info | ./node_modules/.bin/codeclimate-test-reporter
+  - ./node_modules/.bin/codecov
 addons:
     code_climate:
         repo_token:
