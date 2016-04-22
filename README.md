@@ -25,11 +25,11 @@ $ npm install mooyoul/taekbae --save
 TBA
 
 ## Supported Providers
-Privider ID | Provider Name | from Website | from API | Fallback Support | Remarks
+Provider ID | Provider Name | from Website | from API | Fallback Support | Remarks
 ----------- | ------------- | ------------ | -------- | ---------------- | -------------
 epost       | 우체국         | :white_check_mark: | :white_check_mark:  | _WIP_ | _Local Only_
 hanjin      | 한진택배        | _WIP_ | _TBA_ | _TBA_| _Local Only (with eHanex)_
-cj          | CJ대한통운         | _WIP_ | _TBA_ | _TBA_ | _Local Only (with eHanex)_
+cj          | CJ대한통운         | _WIP_ | _TBA_ | _TBA_ | _Local Only_
 
 
 ## Running test
