@@ -7,6 +7,40 @@
 [![Dependency Status](https://david-dm.org/mooyoul/taekbae.svg)](https://david-dm.org/mooyoul/taekbae)
 [![devDependency Status](https://david-dm.org/mooyoul/taekbae/dev-status.svg)](https://david-dm.org/mooyoul/taekbae#info=devDependencies)
 [![Known Vulnerabilities](https://snyk.io/test/github/mooyoul/taekbae/badge.svg)](https://snyk.io/test/github/mooyoul/taekbae)
-
+[![MIT license](http://img.shields.io/badge/license-MIT-blue.svg)](http://mooyoul.mit-license.org/)
 
 택배 운송장 조회 for Node.js
+
+
+## Introduction
+운송장 조회
+
+
+## Getting Started
+```bash
+$ npm install mooyoul/taekbae --save
+```
+
+## API
+TBA
+
+## Supported Providers
+Privider ID | Provider Name | from Website | from API | Fallback Support | Remarks
+----------- | ------------- | ------------ | -------- | ---------------- | -------------
+epost       | 우체국         | :white_check_mark: | :white_check_mark:  | _WIP_ | _Local Only_
+hanjin      | 한진택배        | _WIP_ | _TBA_ | _TBA_| _Local Only (with eHanex)_
+cj          | CJ대한통운         | _WIP_ | _TBA_ | _TBA_ | _Local Only (with eHanex)_
+
+
+## Running test
+```bash
+$ npm test
+```
+
+## Contributing
+TBA
+
+## License
+[MIT](LICENSE)
+
+See full license on [mooyoul.mit-license.org](http://mooyoul.mit-license.org/)
