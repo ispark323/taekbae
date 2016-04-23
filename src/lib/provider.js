@@ -60,6 +60,20 @@ class Provider {
   }
 
   static noop() { }
+
+  static validateMagicNumber(tracking) {
+    const str = typeof tracking !== 'string' ? `${tracking}` : tracking;
+    let
+      payload = null,
+      magic = null;
+
+    if (str.length < 2) { return false; }
+
+    payload = +str.substr(0, str.length - 1);
+    magic = +str.substr(str.length - 1);
+
+    return (payload % 7) === magic;
+  }
 }
 
 
