@@ -13,40 +13,47 @@ var
 
 var noop    = function () {};
 
-var EPost = function () {
+var Hanjin = function () {
   Provider.call(this);
-  this.id = 'epost';
-  this.name = '우체국';
-  this.source = 'website';
-  this.TRACKING_REGEXP = /^[0-9]{13}$/;
+  this.id = 'hanjin';
+  this.name = '한진택배';
+  this.source = 'mobile-webstie';
+  this.TRACKING_REGEXP = /^[0-9]{10}$/;
 };
 
-util.inherits(EPost, Provider);
+util.inherits(Hanjin, Provider);
 
 
-EPost.prototype.fetch = function (tracking, done) {
-  done = done || noop;
-
-  request({
-    method: 'GET',
-    url: 'https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm',
-    qs: {
-      sid1: tracking,
-      displayHeader: 'N'
-    },
-    timeout: 1000*30
-  }, function (e, res, body) {
-    if (e) { return done(e); }
-
-    if (res.statusCode !== 200) {
-      return done(new Error('response status isnt 200'));
+Hanjin.prototype.validate = function (tracking, done) {
+  Provider.prototype.validate.call(this, tracking, function (e, valid) {
+    if (e || !valid) {
+      return done(e, valid);
     }
 
-    done(null, body);
+    done(null, Provider.validateMagicNumber(tracking));
   });
 };
 
-EPost.prototype.parse = function (body, done) {
+Hanjin.prototype.fetch = function (tracking, done) {
+  var self = this;
+  
+  done = done || noop;
+
+  request({
+    method: 'POST',
+    url: 'https://m.hanex.hanjin.co.kr/inquiry/incoming/resultWaybill',
+    form: {
+      div: 'B',
+      show: 'true',
+      wblNum: tracking
+    },
+    timeout: 1000*30
+  }, function (e, res, body) {
+    self.handleResponse(e, res, body, done);
+  });
+};
+
+Hanjin.prototype.parse = function (body, done) {
   done = done || noop;
 
   process.nextTick(function () {
@@ -58,15 +65,16 @@ EPost.prototype.parse = function (body, done) {
       return done(e);
     }
 
+    if ($('.noData').length) {
+      return done(new Error('Empty results'));
+    }
+
     var
       $tables = $('table'),
       $overall = $tables.filter(function (index, el) {
-        return ~$(el).find('th').first().text().indexOf('등기번호');
+        return ~$(el).parent().prev().text().indexOf('배송상태');
       }).find('td');
 
-    if (~$overall.text().indexOf('배달정보를 찾지 못했습니다')) {
-      return done(null, null);
-    }
 
     if (!$overall.length) {
       return done(new Error('Cannot find element'));
@@ -80,21 +88,15 @@ EPost.prototype.parse = function (body, done) {
       },
       tracking: $overall.eq(0).text().trim(),
       remarks: $overall.eq(3).text().trim(),
-      status: $overall.eq(4).text().trim()
+      status: $overall.eq(4).text().trim(),
+      sender: $overall.eq(1).text().trim(),
+      recipient: $overall.eq(2).text().trim()
     };
 
 
     [$overall.eq(1), $overall.eq(2)].forEach(function ($el) {
       $el.find('br').replaceWith('\n');
     });
-
-    var
-      sentChunks = $overall.eq(1).text().split('\n'),
-      receivedChunks = $overall.eq(2).text().split('\n');
-
-    payload.sender = sentChunks[0].trim();
-    payload.recipient = receivedChunks[0].trim();
-
 
 
     payload.histories = $tables.filter(function (index, el) {
@@ -104,7 +106,7 @@ EPost.prototype.parse = function (body, done) {
     }).map(function (index, el) {
       var $columns = $(el).children('td'),
           _date = $columns.eq(0).text().trim().replace(/[\/\.]/g, '-') +
-              ' ' + $columns.eq(1).text().trim();
+            ' ' + $columns.eq(1).text().trim();
 
       return {
         date: moment(_date, 'YYYY-MM-DD HH:mm').toDate(),
@@ -130,4 +132,4 @@ EPost.prototype.parse = function (body, done) {
 };
 
 
-module.exports = exports = EPost;
+module.exports = exports = Hanjin;
