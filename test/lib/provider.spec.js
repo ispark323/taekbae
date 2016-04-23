@@ -147,4 +147,42 @@ describe('Provider class', () => {
       });
     });
   });
+
+  describe('#validateMagicNumber', () => {
+    it('should have validateMagicNumber static method', () => {
+      expect(Provider.validateMagicNumber).to.be.a('function');
+    });
+
+    it('should validate bad input', () => {
+      expect(Provider.validateMagicNumber(null)).equal(false);
+      expect(Provider.validateMagicNumber({})).equal(false);
+      expect(Provider.validateMagicNumber(true)).equal(false);
+      expect(Provider.validateMagicNumber('')).equal(false);
+      expect(Provider.validateMagicNumber('1')).equal(false);
+    });
+
+    it('should validate `12`', () => {
+      expect(Provider.validateMagicNumber('12')).equal(false);
+    });
+
+    it('should validate `1234`', () => {
+      expect(Provider.validateMagicNumber('1234')).equal(true);
+    });
+
+    it('should validate `1234567890123`', () => {
+      expect(Provider.validateMagicNumber('1234567890123')).equal(false);
+    });
+
+    it('should validate `1234567890124`', () => {
+      expect(Provider.validateMagicNumber('1234567890124')).equal(true);
+    });
+
+    it('should validate `8326168055`', () => {
+      expect(Provider.validateMagicNumber(8326168055)).equal(false);
+    });
+
+    it('should validate 8326168056', () => {
+      expect(Provider.validateMagicNumber(8326168056)).equal(true);
+    });
+  });
 });
