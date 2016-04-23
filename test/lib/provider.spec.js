@@ -126,8 +126,6 @@ describe('Provider class', () => {
 
     it('should call callback with error when validate method fails', (done) => {
       provider.execute({}, (e) => {
-        console.log(e);
-        
         expect(e).instanceOf(Error);
         done();
       });
