@@ -1,0 +1,251 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <title>배송조회 결과</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes" />
+  <meta name="format-detection" content="telephone=no" />
+  <!--=== CSS ===-->
+  <link rel="stylesheet" type="text/css" href="/css/font.css" media="all" /><!-- 폰트 CSS -->
+  <link rel="stylesheet" type="text/css" href="/css/common.css" media="all" /><!-- 공통으로 사용 하는 CSS -->
+  <link rel="stylesheet" type="text/css" href="/css/inquiry.css" media="all" /><!-- 택배조회 -->
+  <link rel="stylesheet" type="text/css" href="/css/receipt.css" media="all" /><!-- 택배예약 -->
+  <link rel="stylesheet" type="text/css" href="/css/charge.css" media="all" /><!-- 요금안내 -->
+  <link rel="stylesheet" type="text/css" href="/css/cscenter.css" media="all" /><!-- 고객센터 -->
+  <link rel="stylesheet" type="text/css" href="/css/member.css" media="all" /><!-- 고객센터 -->
+  <link rel="stylesheet" type="text/css" href="/css/mypage.css" media="all" /><!-- 마이페이지 -->
+  <link rel="stylesheet" type="text/css" href="/css/etc.css" media="all" /><!-- 기타 -->
+  <link rel="stylesheet" type="text/css" href="/css/distributor.css" media="all" /><!-- 기타 -->
+  <link rel="stylesheet" type="text/css" href="/css/main.css" media="all" /><!-- 메인 -->
+  <link rel="stylesheet" type="text/css" href="/css/popup.css" media="all" /><!-- 팝업 CSS -->
+  <link rel="stylesheet" type="text/css" href="/css/error.css" media="all" /><!-- 에러 CSS -->
+
+  <!--=== JavaScript ===-->
+  <script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script><!-- jQuery module 추가 -->
+  <script type="text/javascript" src="/js/jquery-ui-1.10.3.custom.min.js"></script><!-- jQuery UI module 추가 -->
+
+  <script type="text/javascript" src="/js/iscroll.js"></script>
+  <script type="text/javascript" src="/js/slider_menu.js"></script>
+  <script type="text/javascript" src="/js/Nav.js"></script>
+  <script type="text/javascript" src="/js/common.js"></script>
+
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+      if ('true' == 'true') {
+        $('#header_wrap').show();
+        $('#footer_wrap').show();
+      }
+
+    });
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var msg = '';
+      if (msg != '')
+        alert(msg);
+    });
+
+    function fnMapArea() {
+      // 지도
+      openPopup('/inquiry/agency/agentLocation?wblNum=2222222225');
+
+    }
+
+    function fnInquiryAgent() {
+      $('#sendFrm').attr("action",
+        "/inquiry/agency/agentResult").submit();
+    }
+
+    function fnResRtn() {
+      $('#sendFrm').attr("action",
+        "/inquiry/outcoming/reservationReturn")
+        .submit();
+    }
+
+    function fnBack() {
+      $('#div').val($('#upDiv').val());
+      $('#queryDiv').val($('#upQueryDiv').val());
+      $('#sendFrm').attr("action",
+        "/inquiry/incoming/incomingResultWay")
+        .submit();
+    }
+  </script>
+
+</head>
+<body>
+<!--전체메뉴 영역 -->
+<div id="category" class="side_wrap">
+  <div class="iscroll">
+    <div class="side_top Nav-header">
+      <p>전체메뉴</p>
+    </div>
+    <div class="side_cont Nav-body">
+      <ul class="depth_01">
+        <li class="step01">
+          <p class="tit_h2"><a href="#">택배조회</a></p>
+          <ul class="depth_02">
+            <li><a href="/inquiry/incoming/incomingResultWay">받는택배</a></li>
+            <li><a href="/inquiry/incoming/incomingResultWay?div=D">보낸택배</a></li>
+            <li><a href="/inquiry/incoming/otherDeliveryVendor">타 택배사 조회</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="depth_01">
+        <li class="step02">
+          <p class="tit_h2"><a href="#">택배예약/조회</a></p>
+          <ul class="depth_02">
+            <li><a href="/inquiry/outcoming/reservationMain">택배예약</a></li>
+            <li><a href="/inquiry/outcoming/reservationReturn">반품예약</a></li>
+            <li><a href="/inquiry/outcoming/reservationPreview">예약 확인/취소</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="depth_01">
+        <li class="step03">
+          <p class="tit_h2"><a href="#">취급점 택배</a></p>
+          <ul class="depth_02">
+            <li><a href="/inquiry/agency/search">취급점 조회</a></li>
+            <li><a href="/inquiry/agency/introduce">취급점 소개</a></li>
+            <li><a href="/inquiry/agency/reservation">취급점 택배 예약</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="depth_01">
+        <li class="step04">
+          <p class="tit_h2"><a href="#">요금안내</a></p>
+          <ul class="depth_02">
+            <li><a href="/charge/information">요금안내</a></li>
+            <li><a href="/charge/examination">요금조회</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="depth_01">
+        <li class="step05">
+          <p class="tit_h2"><a href="#">고객센터</a></p>
+          <ul class="depth_02">
+            <li><a href="/customer/information">고객센터 운영 안내</a></li>
+            <li><a href="/customer/franchise">대리점 조회</a></li>
+            <li><a href="/customer/smsview">문자상담</a></li>
+            <li><a href="/customer/voc">고객의 말씀</a></li>
+            <li><a href="/customer/notice">공지사항</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="depth_01">
+        <li class="step06">
+          <p class="tit_h2"><a href="/mypage/index">마이페이지</a></p>
+        </li>
+      </ul>
+      <ul class="depth_01">
+        <li class="step07">
+          <p class="tit_h2"><a href="/member/settings">설정</a></p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- // 전체메뉴 영역 -->
+<input id="nowSta" name="nowSta" type="hidden" value=""/><div id="wrap">
+  <!-- header 영역 -->
+  <header id="header_wrap">
+    <div class="header">
+      <h1 class="logo"><a href="/main"><img src="/images/icon/logo.png" alt="한진택배" /></a></h1>
+      <a href="#" class="icon_side"><img src="/images/icon/side.png" alt="전체메뉴" /></a>
+      <a href="/mypage/index" class="icon_mypage"><img src="/images/icon/mypage.png" alt="마이페이지" /></a>
+    </div>
+  </header>
+  <!--// header 영역 -->
+  <article class="result"> <section class="mb20"> <script type="text/javascript">
+    $(function() {
+      //숫자만numberonly='true'
+      $('input').keyup(function(e) {
+        if (e.keyCode == 13) fnSend();
+      });
+    });
+
+    function IsEmpty(data) {
+      for (var i = 0; i < data.length; i++) {
+        if (data.substring(i, i + 1) != " ")
+          return false;
+      }
+      return true;
+    }
+
+    function fnSend() {
+
+      var form = $('#wblNumSearchFrm');
+      var wblNumObj = $('input[name=wblNum]');
+      var wblNumVal = wblNumObj.val();
+      if (IsEmpty(wblNumVal) == true) {
+        alert("운송장 번호를 입력하십시오.");
+        wblNumObj.focus();
+        return;
+      }
+
+      if ( fnIsNumber(wblNumObj, "운송장 번호는 숫자만 입력하세요") == false ) {
+        return false;
+      }
+
+
+      if ((wblNumVal.length == 10 || wblNumVal.length == 12)) {
+        var toNum = wblNumVal.substring(0, wblNumVal.length - 1);
+        var remain = wblNumVal.substring(wblNumVal.length - 1,
+          wblNumVal.length);
+
+        if (eval(toNum % 7) != parseInt(remain)) {
+          alert("잘못된 운송장 번호입니다.\n\n운송장 번호 체계에 맞지않습니다.");
+          return false;
+        }
+
+      } else {
+        alert("잘못된 운송장 번호입니다.\n\n운송장 번호 체계에 맞지않습니다.");
+        return false;
+      }
+
+      form.attr("action", "/inquiry/incoming/resultWaybill").submit();
+    }
+  </script>
+
+    <!--  운송장 번호로 조회 -->
+    <form action="/inquiry/incoming/resultWaybill" id="wblNumSearchFrm" name="wblNumSearchFrm" method="POST">
+      <input type="hidden" id="div" name="div" value="B"/>
+      <input type="hidden" id="show" name="show" value="true"/>
+
+      <div class="setting_wrap">
+        <label for="wblNum" class="setting_txt_box">
+          <input type="tel" name="wblNum" id="wblNum" class="num_only" maxlength="13"
+                 onfocus="$('#wblNumSearchPlaceholder').hide();" placeholder="운송장 번호 입력(숫자만)" />
+        </label>
+        <a href="javascript:fnSend();" class="btn_search"><img src="/images/main/btn_search.png" /></a>
+      </div>
+
+    </form>
+  </section>
+
+    <form action="/inquiry/agency/agentResult" id="sendFrm"
+          name="sendFrm" method="post">
+      <input id="wblNum" name="wblNum" type="hidden" value="2222222225"/><input id="empId" name="empId" type="hidden" value=""/><input id="rcvNam" name="rcvNam" type="hidden" value=""/><input id="rcvAddr" name="rcvAddr" type="hidden" value=""/><input type="hidden" id="upDiv" name="upDiv" value="" /> <input
+      type="hidden" id="upQueryDiv" name="upQueryDiv"
+      value="" /> <input type="hidden" id="div" name="div" />
+      <input type="hidden" id="queryDiv" name="queryDiv" "/>
+    </form>
+    <section class="resulte_context"> <p class="noData">검색 결과가 없습니다.</p>
+    </section> </article>
+  <div class="mask_box"></div>
+  <footer id="footer_wrap">
+    <div class="footer_box">
+      <address class="addr">(주)한진 | 서울시 중구 남대문로 63(남대문로 2가 118)</address>
+      <p class="cscenter">파발마(개인택배)예약 : <a href="tel:1544-0011">1544-0011</a></p>
+      <p class="cscenter">배송조회 및 상담문의 : <a href="tel:1588-0011">1588-0011(이용요금 유료)</a></p>
+      <p class="copyright">&copy; HANJIN TRANSPORTATION CO., LTD.</p>
+    </div>
+  </footer>
+
+</div>
+<!-- // Analytics --></body>
+</html>
