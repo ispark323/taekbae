@@ -28,7 +28,7 @@ TBA
 Provider ID | Provider Name | from Website | from API | Fallback Support | Remarks
 ----------- | ------------- | ------------ | -------- | ---------------- | -------------
 epost       | 우체국         | :white_check_mark: | :white_check_mark:  | _WIP_ | _Local Only_
-hanjin      | 한진택배        | _WIP_ | _TBA_ | _TBA_| _Local Only (with eHanex)_
+hanjin      | 한진택배        | _WIP_ | :x: (public api not exists)| _Local Only (including eHanex)_
 cj          | CJ대한통운         | _WIP_ | _TBA_ | _TBA_ | _Local Only_
 
 
