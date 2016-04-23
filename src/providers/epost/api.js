@@ -28,13 +28,11 @@ class EPostAPI extends Provider {
         'User-Agent': 'Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM-P605S Build/KOT49H)'
       },
       form: {
-        // jshint camelcase: false
         target_command: 'kpl.vis.inh.rel.cmd.RetrieveOrderListMobileXmlCMD',
         register_No_From: tracking,
         typeApp: 'postSearch',
         typeSmart: 'I',
         ver: '1.6.4'
-        // jshint camelcase: true
       },
       timeout: 1000 * 30
     }, (e, res, body) => {
