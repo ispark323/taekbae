@@ -25,7 +25,6 @@
   },
   "homepage": "https://github.com/mooyoul/taekbae#readme",
   "dependencies": {
-    "babel-register": "^6.7.2",
     "cheerio": "^0.20.0",
     "moment": "^2.13.0",
     "request": "^2.70.0",
