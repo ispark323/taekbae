@@ -50,12 +50,6 @@ class Provider {
       this.fetch(tracking, (e, body) => {
         if (e) { return done(e); }
 
-        /**
-         * `this.parse` is unreachable on base Provider class.
-         * but, extended class which inherited from base Provider class
-         * like `EPost` class has valid test logic. so just ignore it.
-         */
-        /* istanbul ignore next */
         this.parse(body, (e, result) => {
           if (e) { return done(e); }
 
