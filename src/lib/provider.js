@@ -74,6 +74,19 @@ class Provider {
 
     return (payload % 7) === magic;
   }
+
+  static dateComparator(key = 'date') {
+    return (a, b) => {
+      if (a[key].getTime() > b[key].getTime()) {
+        return 1;
+      }
+      if (a[key].getTime() < b[key].getTime()) {
+        return -1;
+      }
+
+      return 0;
+    };
+  }
 }
 
 

@@ -185,4 +185,59 @@ describe('Provider class', () => {
       expect(Provider.validateMagicNumber(8326168056)).equal(true);
     });
   });
+
+
+  describe('#dateComparator', () => {
+    const
+      baseDate                = new Date(0),
+      now                     = new Date(),
+      createUnsortedDates     = (length = 100, key = 'date') => Array(length).fill(0).map((v, i) => ({
+        index: i,
+        [key]: new Date(baseDate.getTime() + Math.floor((now.getTime() - baseDate.getTime()) * Math.random()))
+      }));
+
+    it('should have `dateComparator` static method', () => {
+      expect(Provider.dateComparator).to.be.a('function');
+    });
+
+    it('should create create sort comparator by calling `dateComparator` static method', () => {
+      expect(Provider.dateComparator()).to.be.a('function');
+    });
+
+    it('should compare two dates', () => {
+      const
+        comparator = Provider.dateComparator(),
+        tests = [{
+          result: -1,
+          dates: [
+            { date: new Date(2016, 0, 1) },
+            { date: new Date(2016, 1, 1) }
+          ]
+        }, {
+          result: 0,
+          dates: [
+            { date: new Date(0) },
+            { date: new Date(0) }
+          ]
+        }, {
+          result: 1,
+          dates: [
+            { date: new Date(2001, 11, 25) },
+            { date: new Date(1993, 10, 24) }
+          ]
+        }];
+
+      expect(tests.every((test) => comparator(...test.dates) === test.result)).equal(true);
+    });
+
+    it('should sort by date', () => {
+      const
+        key         = 'someDateKey',
+        unsorted    = createUnsortedDates(100, key),
+        sorted      = unsorted.sort(Provider.dateComparator(key)),
+        expected    = unsorted.map((v) => v[key].getTime()).sort((a, b) => a - b);
+
+      expect(sorted.every((v, i) => v[key].getTime() === expected[i])).equal(true);
+    });
+  });
 });
