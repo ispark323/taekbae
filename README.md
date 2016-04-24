@@ -25,11 +25,53 @@ $ npm install mooyoul/taekbae --save
 TBA
 
 ## Supported Providers
-Provider ID | Provider Name | from Website | from API | Fallback Support | Remarks
------------ | ------------- | ------------ | -------- | ---------------- | -------------
-epost       | 우체국         | :white_check_mark: | :white_check_mark:  | _WIP_ | _Local Only_
-hanjin      | 한진택배        | _WIP_ | :x: (public api not exists)| _Local Only (including eHanex)_
-cj          | CJ대한통운         | _WIP_ | _TBA_ | _TBA_ | _Local Only_
+<table>
+<thead>
+  <tr>
+    <th colspan="2">Provider</th>
+    <th colspan="3">Data Source</th>
+    <th colspan="2">Misc.</th>
+  </tr>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Website</th>
+    <th>Mobile Website</th>
+    <th>API</th>
+    <th>Fallback Support</th>
+    <th>Remarks</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>epost</td>
+    <td>우체국</td>
+    <td>:white_check_mark:</td>
+    <td>:x: (N/A)</td>
+    <td>:white_check_mark:</td>
+    <td><i>WIP</i></td>
+    <td><i>Local Only</i></td>
+  </tr>
+  <tr>
+    <td>hanjin</td>
+    <td>한진택배</td>
+    <td>:white_check_mark:</td>
+    <td>:white_check_mark:</td>
+    <td>:x: (N/A)</td>
+    <td><i>WIP</i></td>
+    <td><i>Local Only</i><br><i>(including eHanex)</i></td>
+  </tr>
+  <tr>
+    <td>cj</td>
+    <td>CJ대한통운</td>
+    <td><i>TBA</i></td>
+    <td><i>TBA</i></td>
+    <td><i>TBA</i></td>
+    <td><i>TBA</i></td>
+    <td><i>TBA</i></td>
+  </tr>
+</tbody>
+</table>
 
 
 ## Running test
