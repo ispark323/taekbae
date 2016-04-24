@@ -26,6 +26,7 @@
   "homepage": "https://github.com/mooyoul/taekbae#readme",
   "dependencies": {
     "cheerio": "^0.20.0",
+    "iconv-lite": "^0.4.13",
     "moment": "^2.13.0",
     "request": "^2.70.0",
     "xml2js": "^0.4.16"
