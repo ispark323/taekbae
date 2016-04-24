@@ -67,16 +67,7 @@ class EPostAPI extends Provider {
           location: history.nowLc,
           status: history.processSttus +
           (history.detailDc ? `(${history.detailDc.replace(/\s+/g, ' ').trim()})` : '')
-        })).sort((a, b) => {
-          if (a.date.getTime() > b.date.getTime()) {
-            return 1;
-          }
-          if (a.date.getTime() < b.date.getTime()) {
-            return -1;
-          }
-
-          return 0;
-        });
+        })).sort(Provider.dateComparator());
 
       done(null, {
         provider: {

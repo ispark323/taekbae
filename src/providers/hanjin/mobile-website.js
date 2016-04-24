@@ -87,6 +87,13 @@ class HanjinMobileWebsite extends Provider {
         return done(new Error('Cannot find element'));
       }
 
+      statusImagePath = $('.ship_ing img').attr('src').toLowerCase();
+      status = HanjinMobileWebsite.statusImages.find((image) => image.path === statusImagePath);
+
+      if (!status) {
+        return done(new Error('Cannot parse status'));
+      }
+
       const
         payload = {
           provider: {
@@ -95,20 +102,11 @@ class HanjinMobileWebsite extends Provider {
             source: this.source
           },
           tracking: $overall.eq(0).text().trim(),
+          status: status.text,
           content: $overall.eq(3).text().trim(),
           sender: $overall.eq(1).text().trim(),
           recipient: $overall.eq(2).text().trim()
         };
-
-
-      statusImagePath = $('.ship_ing img').attr('src').toLowerCase();
-      status = HanjinMobileWebsite.statusImages.find((image) => image.path === statusImagePath);
-
-      if (!status) {
-        return done(new Error('Cannot parse status'));
-      }
-
-      payload.status = status.text;
 
       payload.histories = $tables
         .filter((index, el) => ~$(el).parent().prev().text().indexOf('배송상태'))
@@ -131,16 +129,7 @@ class HanjinMobileWebsite extends Provider {
             status
           };
         }).get()
-        .sort((a, b) => {
-          if (a.date.getTime() > b.date.getTime()) {
-            return 1;
-          }
-          if (a.date.getTime() < b.date.getTime()) {
-            return -1;
-          }
-
-          return 0;
-        });
+        .sort(Provider.dateComparator());
 
       payload.sentAt = payload.histories[0].date;
       payload.receivedAt = payload.histories[payload.histories.length - 1].date;

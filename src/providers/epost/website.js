@@ -100,16 +100,7 @@ class EPostWebsite extends Provider {
             status: $columns.eq(3).text().replace(/\s+/g, ' ').trim()
           };
         }).get()
-        .sort((a, b) => {
-          if (a.date.getTime() > b.date.getTime()) {
-            return 1;
-          }
-          if (a.date.getTime() < b.date.getTime()) {
-            return -1;
-          }
-
-          return 0;
-        });
+        .sort(Provider.dateComparator());
 
       payload.sentAt = payload.histories[0].date;
       payload.receivedAt = payload.histories[payload.histories.length - 1].date;
