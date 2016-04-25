@@ -1,7 +1,13 @@
 engines:
-  engines:
-    nodesecurity:
-      enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+  eslint:
+    enabled: true
+  nodesecurity:
+    enabled: true
   fixme:
     enabled: true
 ratings:
