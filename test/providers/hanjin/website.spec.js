@@ -288,5 +288,26 @@ describe('providers/hanjin/website class', () => {
         done();
       });
     });
+
+    it('should execute with 12 digits tracking', (done) => {
+      nock.cleanAll();
+      nock.enableNetConnect();
+      hanjin.execute('408939442225', (e, result) => {
+        expect(e).to.be.a('null');
+        expect(result).to.be.a('object');
+        expect(result.provider.id).equal('hanjin');
+        expect(result.provider.name).equal('한진택배');
+        expect(result.status).equal('배송 완료');
+        expect(result.content).equal('크롬커터 단품');
+        expect(result.sender).equal('주*******');
+        expect(result.recipient).equal('권**');
+        expect(result.sentAt).instanceOf(Date);
+        expect(result.receivedAt).instanceOf(Date);
+        expect(result.histories).instanceOf(Array);
+
+        nock.disableNetConnect();
+        done();
+      });
+    });
   });
 });

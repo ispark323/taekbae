@@ -125,8 +125,14 @@ class HanjinWebsite extends Provider {
           mbl: trackingChunks[1] || null,
           status: status.text,
           content: $overall.eq(1).text().trim(),
-          sender: $overall.eq(2).text().replace(/\s+/g, ' ').replace(/님$/, '').trim(),
-          recipient: $overall.eq(3).text().replace(/\s+/g, ' ').replace(/님$/, '').trim()
+          sender: $overall.eq($overall.length - 3).text()
+            .replace(/\s+/g, ' ')
+            .replace(/님$/, '')
+            .trim(),
+          recipient: $overall.eq($overall.length - 2).text()
+            .replace(/\s+/g, ' ')
+            .replace(/님$/, '')
+            .trim()
         };
 
       payload.histories = $tables
